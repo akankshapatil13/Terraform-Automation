@@ -4,13 +4,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ygminds73/Terraform-Automation.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/akankshapatil13/Terraform-Automation.git']])
             }
         }
     
         stage ("terraform init") {
             steps {
                 sh ("terraform init -reconfigure") 
+            }
+        }
+        stage ("terraform validate") {
+            steps {
+                sh ("terraform validate") 
             }
         }
         
